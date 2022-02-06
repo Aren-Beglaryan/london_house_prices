@@ -5,8 +5,10 @@
 
 + local
 
-
-
+    ```
+    run app.py
+    use request.json with postman or other tool to do a post request 
+    ```
 
 + docker
 
