@@ -5,7 +5,8 @@
 
 + local
 
-    ```run app.py
+    ```
+    run app.py
     use request.json with postman or other tool to do a post request 
     ```
 
