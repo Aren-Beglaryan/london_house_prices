@@ -25,6 +25,3 @@ class TrainingDataset(Dataset):
         return len(self.df)
 
 
-class InferenceDataset(Dataset):
-    """Inference Dataset class for house price prediction"""
-    pass

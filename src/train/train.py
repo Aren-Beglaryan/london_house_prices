@@ -159,8 +159,5 @@ def main(args):
 
 
 if __name__ == '__main__':
-    print('started')
     args = parse_args()
-    print('1')
     main(args)
-    print('2')
