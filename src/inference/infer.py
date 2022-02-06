@@ -7,19 +7,16 @@ from src.data.create_dataset import preprocess_data, one_hot_encode_transform, n
 
 
 class Predictor:
-    def __init__(self, model_path: str):
+    def __init__(self, model_path: str, encoder_path: str):
         # device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
         device = 'cpu'
         net = RegressorNet(n_input=130)
         net.to(device)
-
-        # if torch.cuda.is_available():
-        #     net.load_state_dict(torch.load(model_path))
-        # else:
         net.load_state_dict(torch.load(model_path, map_location=torch.device('cpu')))
         net.eval()
 
         self.net = net
+        self.encoder_path = encoder_path
 
     def infer(self, payload: Dict):
         processed_sample = self.preprocess(payload)
@@ -27,12 +24,11 @@ class Predictor:
 
         return self.postprocess(pred)
 
-    @staticmethod
-    def preprocess(payload: Dict):
+    def preprocess(self, payload: Dict):
         sample = pd.DataFrame([payload.values()], columns=payload.keys())
         sample['date'] = pd.to_datetime(sample['date'])
         sample = preprocess_data(sample)
-        sample = one_hot_encode_transform(sample)
+        sample = one_hot_encode_transform(sample, encoder_path=self.encoder_path)
         sample = normalize(sample)
 
         return torch.from_numpy(sample.values).float()

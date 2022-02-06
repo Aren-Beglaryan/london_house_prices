@@ -1,0 +1,7 @@
+numpy==1.21.2
+pandas==1.1.3
+sklearn
+geopy==2.2.0
+google-cloud-bigquery==1.22.0
+--find-links https://download.pytorch.org/whl/torch_stable.html
+torch==1.8.1+cpu # by default pt-fasttext and autocorrect will not install torch
