@@ -1,5 +1,6 @@
 # london_house_prices
 
+The project is about to predict the price of the house
 
 # RUN
 
